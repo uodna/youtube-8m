@@ -146,7 +146,7 @@ class AveragePrecisionCalculator(object):
     """
     if self.heap_size <= 0:
       return 0
-    predlists = numpy.array(zip(*self._heap))
+    predlists = numpy.array(list(zip(*self._heap)))
     ap = self.ap_at_n(predlists[0],
                       predlists[1],
                       n=self._top_n,
