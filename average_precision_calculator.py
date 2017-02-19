@@ -26,8 +26,8 @@ a short ranked list in the memory.
 ```
 import random
 
-p = np.array([random.random() for _ in xrange(10)])
-a = np.array([random.choice([0, 1]) for _ in xrange(10)])
+p = np.array([random.random() for _ in range(10)])
+a = np.array([random.choice([0, 1]) for _ in range(10)])
 
 ap = average_precision_calculator.AveragePrecisionCalculator.ap(p, a)
 ```
@@ -38,10 +38,10 @@ predictions). In this case, we first call the function accumulate many times
 to process parts of the ranked list. After processing all the parts, we call
 peek_interpolated_ap_at_n.
 ```
-p1 = np.array([random.random() for _ in xrange(5)])
-a1 = np.array([random.choice([0, 1]) for _ in xrange(5)])
-p2 = np.array([random.random() for _ in xrange(5)])
-a2 = np.array([random.choice([0, 1]) for _ in xrange(5)])
+p1 = np.array([random.random() for _ in range(5)])
+a1 = np.array([random.choice([0, 1]) for _ in range(5)])
+p2 = np.array([random.random() for _ in range(5)])
+a2 = np.array([random.choice([0, 1]) for _ in range(5)])
 
 # interpolated average precision at 10 using 1000 break points
 calculator = average_precision_calculator.AveragePrecisionCalculator(10)
@@ -123,7 +123,7 @@ class AveragePrecisionCalculator(object):
     topk = self._top_n
     heap = self._heap
 
-    for i in xrange(numpy.size(predictions)):
+    for i in range(numpy.size(predictions)):
       if topk is None or len(heap) < topk:
         heapq.heappush(heap, (predictions[i], actuals[i]))
       else:
@@ -237,7 +237,7 @@ class AveragePrecisionCalculator(object):
     r = len(sortidx)
     if n is not None:
       r = min(r, n)
-    for i in xrange(r):
+    for i in range(r):
       if actuals[sortidx[i]] > 0:
         poscount += 1
         ap += poscount / (i + 1) * delta_recall

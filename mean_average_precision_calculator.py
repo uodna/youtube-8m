@@ -25,9 +25,9 @@ to calculate the mean average precision.
 ```
 import random
 
-p = np.array([[random.random() for _ in xrange(50)] for _ in xrange(1000)])
-a = np.array([[random.choice([0, 1]) for _ in xrange(50)]
-     for _ in xrange(1000)])
+p = np.array([[random.random() for _ in range(50)] for _ in range(1000)])
+a = np.array([[random.choice([0, 1]) for _ in range(50)]
+     for _ in range(1000)])
 
 # mean average precision for 50 classes.
 calculator = mean_average_precision_calculator.MeanAveragePrecisionCalculator(
@@ -64,7 +64,7 @@ class MeanAveragePrecisionCalculator(object):
 
     self._ap_calculators = []  # member of AveragePrecisionCalculator
     self._num_class = num_class  # total number of classes
-    for i in xrange(num_class):
+    for i in range(num_class):
       self._ap_calculators.append(
           average_precision_calculator.AveragePrecisionCalculator())
 
@@ -89,7 +89,7 @@ class MeanAveragePrecisionCalculator(object):
       num_positives = [None for i in predictions.shape[1]]
 
     calculators = self._ap_calculators
-    for i in xrange(len(predictions)):
+    for i in range(len(predictions)):
       calculators[i].accumulate(predictions[i], actuals[i], num_positives[i])
 
   def clear(self):
@@ -108,5 +108,5 @@ class MeanAveragePrecisionCalculator(object):
       class.
     """
     aps = [self._ap_calculators[i].peek_ap_at_n()
-           for i in xrange(self._num_class)]
+           for i in range(self._num_class)]
     return aps
